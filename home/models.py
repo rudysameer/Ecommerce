@@ -61,7 +61,7 @@ LABELS = (('default','default'),('hot','hot'),('new','New'),('sale','sale'))
 class Product(models.Model):
     name = models.CharField(max_length=300)
     price = models.IntegerField()
-    discounted_price = models.IntegerField(blank=True)
+    discounted_price = models.IntegerField(default=0)
     image = models.ImageField(upload_to='media')
     description = models.TextField(blank=True)
     specification = models.TextField(blank=True)
