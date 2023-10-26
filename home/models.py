@@ -61,7 +61,7 @@ LABELS = (('default','default'),('hot','hot'),('new','New'),('sale','sale'))
 class Product(models.Model):
     name = models.CharField(max_length=300)
     price = models.IntegerField()
-    discounted_price = models.IntegerField(blank=True)
+    discounted_price = models.IntegerField(default=0)
     image = models.ImageField(upload_to='media')
     description = models.TextField(blank=True)
     specification = models.TextField(blank=True)
@@ -73,3 +73,56 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ProductReviews(models.Model):
+    username = models.CharField(max_length = 300)
+    email = models.EmailField(max_length = 500)
+    date = models.DateField(auto_now_add = True)
+    star = models.IntegerField()
+    review = models.TextField()
+    slug = models.SlugField(max_length = 200)
+    image = models.ImageField(upload_to= 'media',null = 'True')
+
+    def __str__(self):
+        return self.username
+
+class Cart(models.Model):
+    name = models.CharField(max_length=300)
+    price = models.IntegerField()
+    quantity = models.IntegerField()
+    total = models.IntegerField()
+    slug = models.SlugField(max_length=500)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    checkout = models.BooleanField(default = False)
+
+    def __str__(self):
+        return self.name
+
+
+class Checkout(models.Model):
+    firstname = models.CharField(max_length=100)
+    lastname = models.CharField(max_length=100)
+    email = models.EmailField(max_length=200)
+    Address = models.CharField(max_length=100)
+    phone = models.IntegerField()
+    country = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    zipcode = models.IntegerField()
+
+    shipfirstname = models.CharField(max_length=100)
+    shiplastname = models.CharField(max_length=100)
+    shipEmail = models.EmailField(max_length=200)
+    shipAddress = models.CharField(max_length=100)
+    shipphone = models.IntegerField()
+    shipcountry = models.CharField(max_length=100)
+    shipcity = models.CharField(max_length=100)
+    shipstate = models.CharField(max_length=100)
+    shipzipcode = models.IntegerField()
+
+
+
+    def __str__(self):
+        return self.firstname
+
