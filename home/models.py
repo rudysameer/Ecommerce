@@ -110,7 +110,6 @@ class Checkout(models.Model):
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
     zipcode = models.IntegerField()
-
     shipfirstname = models.CharField(max_length=100)
     shiplastname = models.CharField(max_length=100)
     shipEmail = models.EmailField(max_length=200)

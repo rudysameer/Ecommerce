@@ -6,6 +6,7 @@ urlpatterns = [
     path("",HomeView.as_view(), name = 'home'),
     path("category/<slug>",CategoryView.as_view(), name = 'category'),
     path("brand/<slug>",BrandView.as_view(), name = 'brand'),
+
     path("detail/<slug>",DetailView.as_view(), name = 'detail'),
     path("search",SearchView.as_view(), name = 'search'),
     path("signup",signup, name = 'signup'),
@@ -16,4 +17,5 @@ urlpatterns = [
     path("submit_review/<slug>", submit_review, name='submit_review'),
     path("checkout", checkout, name='checkout'),
 
-]
+    path("detail/<slug>",BrandView.as_view(), name = 'brand'),]
+
